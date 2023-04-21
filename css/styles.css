@@ -1,0 +1,122 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.8rem;
+  font-weight: 300;
+  background-color: #FAF9F6;
+  color: #6d6d6d;
+}
+
+h1 {
+  color: #444444;
+  font-weight: 700;
+}
+
+h2 {
+  color: #444444;
+  font-weight: 400;
+  font-size: 1.3rem;
+}
+
+.boys {
+  background-color: #6e77b0;
+}
+
+.girls {
+  background-color: #d96d02;
+}
+
+.legend-large,
+.legend-small {
+  border-radius: 50%;
+  border: 1px solid #000;
+}
+
+hr.small,
+hr.large {
+  width: 83px;
+  position: absolute;
+  top: -8px;
+  left: 55px;
+  border: 1px dashed rgb(30, 30, 30);
+  margin-top: 8px;
+}
+
+.leaflet-container {
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.4rem;
+  font-weight: 300;
+}
+
+#info {
+  z-index: 1000;
+  display: none;
+  width: 260px;
+  position: absolute;
+}
+
+.girls,
+.boys {
+  color: #fff;
+  font-weight: 700;
+  padding: 0 4px 0 4px;
+}
+
+.trend {
+  color: #6d6d6d;
+  font-weight: 500;
+  margin: -2px 0 0 0;
+}
+
+#map {
+  height: 75vh;
+  background-color: rgb(220, 220, 220);
+}
+
+#key {
+  font-size: 1rem;
+  font-weight: bold;
+
+}
+
+.bg-light {
+  background-color: whitesmoke !important;
+}
+
+.mb-4 {
+  margin-bottom: 0.8rem!important;
+}
+
+.leaflet-legend {
+  width: 240px;
+  height: 180px;
+  background-color: whitesmoke;
+  /* Legend is not shown on small screens. */
+  display: none;
+}
+
+/* Rule to toggle on/off legend. */
+.show-legend {
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* When screen is 768px and wider. */
+@media screen and (min-width: 768px) {
+  #map {
+    border-top: none;
+    height: 92vh;
+  }
+  .leaflet-legend {
+    display: block;
+  }
+  #legend button {
+    display: none;
+  }
+
+  #content {
+    height: 92vh;
+    padding: 3% 1% 2% 1%;
+  }
+}

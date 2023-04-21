@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Trends in School Enrollment in Kenya</title>
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+      crossorigin=""
+    />
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div id="content" class="col-md-3 py-2 overflow-scroll">
+          <h1>Trends in School Enrollment in Kenya</h1>
+          <p>
+            The Kenyan government compiles and opens an impressive amount of
+            data. (Though now behind a login, the data is available
+            <a href="https://www.opendata.go.ke/" target="_">here</a>.) When
+            looking at school enrollment by gender across all counties, from
+            grades one through eight, we notice a few trends right off the bat:
+          </p>
+          <ul>
+            <li>
+              There are fewer children enrolled in the most rural (eastern)
+              counties
+            </li>
+            <li>
+              Across all counties, enrollment drops consistently from grades 1 to 8
+              to
+            </li>
+            <li>There are almost equal numbers of girls and boys enrolled across the entire system</li>
+          </ul>
+          <h2>Progress Made</h2>
+          <p>
+            The Global Partnership for Education <a href="https://www.globalpartnership.org/results/stories-of-change/kenya-investing-education-better-future#:~:text=Kenya's%20Primary%20Education%20Development%20program,girls%20and%20boys%20almost%20equal." target="_">reports that</a>, Kenya's schools must overcome three major hurdles:
+          </p>
+          <ul>
+            <li>Gender equality</li>
+            <li>Access to textbooks</li>
+            <li>Sanitation</li>
+          </ul>
+          <h2>Challenges Remain</h2>
+          <p>
+            According to <a href="https://www.unicef.org/kenya/education" target="_">UNICEF</a>, Kenya's schools have made huge progress in the last couple decards, particularly in:
+          </p>
+          <ul>
+            <li>High student-to-teacher ratio</li>
+            <li>Lack of training for teachers</li>
+            <li>Lack of access to technology in rural settings</li>
+          </ul>
+         
+          <hr>
+          <ul class="list-unstyled">
+          <li>
+            authored by
+            <a href="https://michael-sparks13.github.io/portfolio/" target="_"
+              >sparks</a
+            >
+          </li>
+          <li>April 2023</li>
+          <li>
+            data via
+            <a href="https://www.opendata.go.ke/" target="_">Kenya's Open Data Portal</a>
+          </li>
+        </ul>
+        </div>
+
+        <div class="col-md-9 p-0">
+          <div id="map"></div>
+          <!-- ui slider -->
+          <span id="key" class="shadow-sm p-3 bg-light rounded-2">
+            Grade: 1
+            </span>
+          <div id="slider" class="shadow-sm p-3 bg-light rounded-2">
+            <input
+              type="range"
+              class="form-range"
+              min="1"
+              max="8"
+              value="1"
+              step="1"
+            />
+          </div>
+
+
+          <!-- legend -->
+          <div id="legend" class="shadow-sm p-3 bg-light rounded-2">
+            <div class="leaflet-legend">
+              <h5 class="mb-4">
+                Number of <span class="girls">girl</span> and
+                <span class="boys">boy</span> students enrolled by county
+              </h5>
+              <div class="legend-circles position-relative">
+                <div class="legend-large position-absolute"></div>
+                <div class="legend-small position-absolute"></div>
+                <hr class="large" />
+                <div class="legend-large-label position-absolute"></div>
+                <hr class="small" />
+                <div class="legend-small-label position-absolute"></div>
+              </div>
+            </div>
+            <button class="btn btn-primary float-end">Legend</button>
+          </div>
+        </div>
+      </div>
+      <footer class="footer fixed-bottom bg-dark" id="footer">
+        <div class="row">
+          <div class="col-12 text-center text-white pt-2">
+            <h2>© &#8734; 🦋</h2>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <div id="info" class="p-2 bg-light rounded-2 shadow">
+      <h4><span></span> County</h4>
+      <p class="girls mb-0">
+        girls <span></span>:
+        <span></span>
+      </p>
+      <p class="boys">
+        boys <span></span>:
+        <span></span>
+      </p>
+      <p class="trend">trend: grades 1 &ndash; 8</p>
+      <p>
+        <span id="girlspark"></span>
+      </p>
+      <p>
+        <span id="boyspark"></span>
+      </p>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+      crossorigin=""
+    ></script>
+    <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js"></script>
+    <script src="js/app.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.1.1/d3.min.js"
+      integrity="sha512-COTaPOlz12cG4fSfcBsxZsjauBAyldqp+8FQUM/dZHm+ts/jR4AFoJhCqxy8K10Jrf3pojfsbq7fAPTb1XaVkg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </body>
+</html>
