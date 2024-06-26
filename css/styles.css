@@ -18,6 +18,12 @@ h2 {
   font-size: 1.3rem;
 }
 
+footer h2 {
+  color: #444444;
+  font-weight: 300;
+  font-size: 0.8rem;
+}
+
 .boys {
   background-color: #6e77b0;
 }
