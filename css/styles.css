@@ -1,3 +1,10 @@
+/* General reset for margins and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 1.1rem;
@@ -18,10 +25,17 @@ h2 {
   font-size: 1.3rem;
 }
 
-footer h2 {
-  color: #444444;
-  font-weight: 300;
-  font-size: 0.8rem;
+.footer {
+  width: 100%;
+  height: 56px; /* Ensure this matches the height subtracted in #map and #content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer h2 {
+  margin: 0;
+  font-size: 1rem;
 }
 
 .boys {
@@ -76,14 +90,13 @@ hr.large {
 }
 
 #map {
-  height: 75vh;
+  height: calc(100vh - 56px); /* Adjust this if your footer height changes */
   background-color: rgb(220, 220, 220);
 }
 
 #key {
   font-size: 1rem;
   font-weight: bold;
-
 }
 
 .bg-light {
@@ -91,7 +104,7 @@ hr.large {
 }
 
 .mb-4 {
-  margin-bottom: 0.8rem!important;
+  margin-bottom: 0.8rem !important;
 }
 
 .leaflet-legend {
@@ -112,7 +125,7 @@ hr.large {
 @media screen and (min-width: 768px) {
   #map {
     border-top: none;
-    height: 92vh;
+    height: calc(100vh - 56px); /* Adjust this if your footer height changes */
   }
   .leaflet-legend {
     display: block;
@@ -122,7 +135,12 @@ hr.large {
   }
 
   #content {
-    height: 92vh;
+    height: calc(100vh - 56px); /* Adjust this if your footer height changes */
     padding: 3% 1% 2% 1%;
   }
+}
+
+.footer {
+  width: 100%;
+  height: 56px; /* Ensure this matches the height subtracted in #map and #content */
 }
